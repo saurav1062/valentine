@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff5f8a,#ff9a9e);overflow:hidden;font-family:Arial}
+.container{background:#fff;padding:30px 20px;border-radius:20px;text-align:center;max-width:400px;width:90%;box-shadow:0 10px 25px rgba(0,0,0,.25);z-index:2}
+button{padding:12px 25px;border:none;border-radius:25px;margin:10px;font-size:16px}
+#yes{background:#ff4d6d;color:#fff}
+#no{background:#ddd;position:fixed}
+#msg{display:none;font-size:22px;color:#ff4d6d}
+.heart{position:absolute;animation:float 6s linear infinite}
+@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-10vh)}}
+</style>
+</head>
+<body>
+<audio id="song" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+<div class="container">
+<h2 id="q">Will you be my Valentine? 💖</h2>
+<button id="yes">Yes ❤️</button>
+<button id="no">No 😢</button>
+<div id="msg">You chose YES ❤️ and made my day beautiful 🥰</div>
+</div>
+<script>
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const song=document.getElementById("song");
+no.onmouseover=no.ontouchstart=()=>{
+no.style.left=Math.random()*(innerWidth-no.offsetWidth)+"px";
+no.style.top=Math.random()*(innerHeight-no.offsetHeight)+"px";
+}
+yes.onclick=()=>{
+document.getElementById("q").style.display="none";
+yes.style.display="none";no.style.display="none";
+document.getElementById("msg").style.display="block";
+song.currentTime=0; song.play().catch(()=>{});
+}
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+</script>
+</body>
+</html>
